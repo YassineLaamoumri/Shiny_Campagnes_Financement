@@ -82,7 +82,7 @@ ui <- dashboardPage(
                           ,
                           actionButton("submit6", "Appliquer",type="primary")
                         ))
-            
+
     )
   
   )
