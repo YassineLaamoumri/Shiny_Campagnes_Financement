@@ -33,7 +33,7 @@
 source('global.R')
 
 ui <- dashboardPage(
-  dashboardHeader(title = 'Campagnes'),
+  dashboardHeader(title = 'Campagnes Ulule'),
   dashboardSidebar(
     sidebarMenu(
       menuItem(
@@ -55,7 +55,7 @@ ui <- dashboardPage(
                tabName = "Top10",
                icon = icon("fas fa-table")),
       menuItem(
-        "Animate_Chart",
+        "Animate Chart",
         tabName = "Animate_Chart",
         icon = icon("chart-line")
       )
@@ -65,7 +65,7 @@ ui <- dashboardPage(
   dashboardBody(tabItems(
     tabItem(
       tabName = "Graphique_1",
-      box(plotOutput("plot1"), width = 500),
+      box(plotlyOutput("plot1"), width = 500),
       box(
         pickerInput(
           "category1",
@@ -97,7 +97,7 @@ ui <- dashboardPage(
     ),
     tabItem(
       tabName = "Graphique_3",
-      box(plotOutput("plot3"), width = 500),
+      box(plotlyOutput("plot3"), width = 500),
       box(
         pickerInput(
           "category3",
@@ -112,7 +112,7 @@ ui <- dashboardPage(
       )
     ),
     tabItem(
-      tabName = "Top10",
+      tabName = "Top 10",
       box(dataTableOutput("table"), width = 500),
       box(
         pickerInput(

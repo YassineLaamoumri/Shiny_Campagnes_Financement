@@ -5,10 +5,10 @@ account: yass
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5310782
-bundleId: 5363331
+bundleId: 5363928
 url: https://yass.shinyapps.io/projet/
-when: 1639337180.80585
-lastSyncTime: 1639337180.80585
+when: 1639349973.07121
+lastSyncTime: 1639349973.07121
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: test.csv

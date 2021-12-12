@@ -65,13 +65,13 @@ shinyServer(function(input, output) {
 
 
   
-  output$plot1 <- renderPlot({
+  output$plot1 <- renderPlotly({
     ## Nombre total nombre total de campagnes
-    data_perimetre1() %>%  group_by(year_month) %>% summarise(total = n()) %>% ggplot(mapping = aes(x =
+     g <- data_perimetre1() %>%  group_by(year_month) %>% summarise(total = n()) %>% ggplot(mapping = aes(x =
                                                                                                    year_month, y = total)) + geom_line() + scale_x_datetime(breaks = '1 month', labels = label_date(format = "%Y-%m-%d")) + theme_minimal() +
       labs(title =
              'Variabilité du nombre de campagnes par mois', x = 'Date', y = 'Nombre de campagnes')
-    
+    ggplotly(g)
     
   })
   
@@ -86,13 +86,13 @@ shinyServer(function(input, output) {
   })
   
   
-  output$plot3 <- renderPlot({
+  output$plot3 <- renderPlotly({
     # Durée médiane des campagnes financées 
     
-    data_perimetre3() %>% group_by(category) %>% summarise(median_amount =median(amount_raised)) %>% ggplot(aes(x=category,y=median_amount,fill=category)) +geom_bar(stat = 'identity') + theme_minimal() +
+     g <- data_perimetre3() %>% group_by(category) %>% summarise(median_amount =median(amount_raised)) %>% ggplot(aes(x=category,y=median_amount,fill=category)) +geom_bar(stat = 'identity') + theme_minimal() +
       labs(title =
              'Montant médian des campagnes financées par catégorie', x = 'Catégorie', y = 'Montant moyen')
-    
+    ggplotly(g)
   })
   
   
