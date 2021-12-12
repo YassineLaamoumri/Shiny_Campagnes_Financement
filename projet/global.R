@@ -1,7 +1,8 @@
+library(shiny)
+library(plotly)
 library(tidyverse)
-
-tidyverse_update()
-
+library(scales)
+library(DT)
 library(readr)
 library(readxl)
 library(skimr)
@@ -15,9 +16,27 @@ library(forcats)
 library(tidyr)
 library(stringi)
 library(gganimate)
+library(scales)
+library(shinydashboard)
+library(shinyWidgets)
+library(Cairo)
+library(av)
+library(png)
+library(rsconnect)
+library(xfun)
+options(shiny.usecairo=T)
+# options(encoding = 'UTF-8')
 #Importation des données
-data <-
-  read_delim('data_ulule_2019.csv', locale = locale(encoding = stri_enc_get()))
+# data <-
+#   read_delim('data_ulule_2019.csv', locale = locale(encoding = stri_enc_get()))
+
+
+data <- read.csv("data_ulule_2019.csv",row.names = 1)
+data <- data %>% mutate(category = case_when(category == 'Film et vid<e9>o'~'Film et vidéo',
+                                             category == 'Film et vidÃ©o'~'Film et vidéo',
+                                     TRUE ~as.character(category)))
+
+data
 
 glimpse(data)
 
@@ -28,6 +47,11 @@ data <- data %>% select(-...1)
 # Supprimons les campagnes annulées
 
 data <- data %>% filter(is_cancelled == FALSE)
+
+# On garde les données des deux dernières années
+data <- data %>% filter(year(date_start) >= 2019 |
+                          (month(date_start) >= 10 &
+                             year(date_start) >= 2018))
 
 
 #Selectionnons les 8 pays ayant le plus de campagnes au total
@@ -178,10 +202,6 @@ write.csv2(as.data.frame(test), 'test.csv')
 
 
 
-data_perimetre1() %>%  group_by(year_month) %>% summarise(total = n()) %>% ggplot(mapping = aes(x =
-                                                                                                  year_month, y = total)) + geom_line() + scale_x_datetime(breaks = '1 month', labels = label_date(format = "%Y-%m-%d")) + theme_minimal() +
-  labs(title =
-         'Variabilité du nombre de campagnes par mois', x = 'Date', y = 'Nombre de campagnes')
 
 
 
@@ -206,17 +226,17 @@ anim_multiple_courbe <- data_courbe %>% ggplot(mapping = aes(x =
   view_follow()
 
 
-anim_multiple_courbe
-
-animate(
-  plot = anim_multiple_courbe,
-  render = gifski_renderer(),
-  height = 600,
-  width = 800,
-  duration = 15,
-  fps = 25
-)
-
-anim_save('anim_multiple_courbe.gif')
+# anim_multiple_courbe
+# 
+# animate(
+#   plot = anim_multiple_courbe,
+#   render = gifski_renderer(),
+#   height = 600,
+#   width = 800,
+#   duration = 15,
+#   fps = 25
+# )
+# 
+# anim_save('anim_multiple_courbe.gif')
 
 

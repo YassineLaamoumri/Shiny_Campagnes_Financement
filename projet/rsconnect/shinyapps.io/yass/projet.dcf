@@ -1,0 +1,14 @@
+name: projet
+title: projet
+username:
+account: yass
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5310782
+bundleId: 5363331
+url: https://yass.shinyapps.io/projet/
+when: 1639337180.80585
+lastSyncTime: 1639337180.80585
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: test.csv
