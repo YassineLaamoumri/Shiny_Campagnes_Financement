@@ -51,7 +51,7 @@ ui <- dashboardPage(
         tabName = "Graphique_3",
         icon = icon("chart-line")
       ),
-      menuItem("Top10",
+      menuItem("Top 10",
                tabName = "Top10",
                icon = icon("fas fa-table")),
       menuItem(
@@ -112,7 +112,7 @@ ui <- dashboardPage(
       )
     ),
     tabItem(
-      tabName = "Top 10",
+      tabName = "Top10",
       box(dataTableOutput("table"), width = 500),
       box(
         pickerInput(
